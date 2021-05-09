@@ -3,10 +3,17 @@ import axios from 'axios';
 import { apiUrl } from '../config';
 
 const CreateUser = () => {
-	const [newUserInfo, setNewUserInfo] = useState({});
+	const [newUserInfo, setNewUserInfo] = useState({ admin: false });
 	function handleChange(event) {
 		event.preventDefault();
 		setNewUserInfo({ ...newUserInfo, [event.target.id]: event.target.value });
+		if (event.target.type === 'checkbox') {
+			if (event.target.value == 'on') {
+				setNewUserInfo({ ...newUserInfo, admin: true });
+			} else {
+				setNewUserInfo({ ...newUserInfo, admin: false });
+			}
+		}
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
@@ -64,6 +71,8 @@ const CreateUser = () => {
 						placeholder='Password'
 						onChange={handleChange}
 					/>
+					<br />
+					admin? <input type='checkbox' id='admin' onChange={handleChange} />
 					<br />
 					<button type='submit'>Create User</button>
 				</form>

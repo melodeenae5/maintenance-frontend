@@ -1,7 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ isAuth, setIsAuth }) => {
+	let history = useHistory();
+	function logout() {
+		localStorage.clear();
+		setIsAuth(false);
+		history.push('/');
+	}
+	if (!isAuth) {
+		return null;
+	}
 	return (
 		<div className='navbar'>
 			<ul className='navcontent'>
@@ -53,6 +62,7 @@ const Navbar = () => {
 						Messaging
 					</NavLink>
 				</li>
+				<button onClick={logout}>Logout</button>
 			</ul>
 		</div>
 	);

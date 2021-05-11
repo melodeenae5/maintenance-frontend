@@ -37,6 +37,12 @@ body {
 	display: flex;
 	justify-content: space-between;
 }
+.header-admin {
+	font-size: 14px;
+	color: #677586;
+	margin-right: 10%;
+	margin-top: 30px;
+}
 .header-title {
 	display: flex;
 	align-items: center;
@@ -161,10 +167,6 @@ img {
 	padding-left: 20px;
 	padding-right: 20px;
 	color: #3b3b3b;
-}
-
-.side-content {
-	float: right;
 }
 
 @media only screen and (max-width: 768px) {

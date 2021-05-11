@@ -36,13 +36,6 @@ const CreateTask = ({ show, handleClose, setRefreshTasks }) => {
 		event.preventDefault();
 		const token = localStorage.getItem('token');
 		setNewTask({ ...newTask, date: Date.now() });
-		// if (!newTask.user_id || newTask.user_id === '') {
-		// 	setNewTask({
-		// 		...newTask,
-		// 		user_id: users[0]._id,
-		// 		username: users[0].username,
-		// 	});
-		// }
 		axios({
 			method: 'POST',
 			url: `${apiUrl}/api/tasks`,
@@ -52,8 +45,8 @@ const CreateTask = ({ show, handleClose, setRefreshTasks }) => {
 			},
 		})
 			.then((res) => {
-				handleClose();
 				setRefreshTasks(true);
+				handleClose();
 				setNewTask({ complete: false });
 			})
 			.catch((err) => console.log(err));

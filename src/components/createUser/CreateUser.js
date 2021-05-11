@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { apiUrl } from '../../config';
-import UsersSidePanel from './UsersSidePanel';
 
-const CreateUser = ({ isAuth }) => {
+const CreateUser = ({ show, handleClose, setRefreshUsers }) => {
 	const [newUserInfo, setNewUserInfo] = useState({ admin: false });
 	let history = useHistory();
 	function handleChange(event) {
@@ -26,18 +25,23 @@ const CreateUser = ({ isAuth }) => {
 			data: newUserInfo,
 		})
 			.then((res) => {
-				console.log(res);
+				setRefreshUsers(true);
+				handleClose();
+				setNewUserInfo({ admin: false });
 			})
 			.catch((err) => console.log(err));
 	}
-	if (!isAuth) {
-		history.push('/');
+	if (!show) {
+		return null;
 	}
 	return (
-		<div>
-			<div className='content'>
+		<div className='modal'>
+			<div className='modal-content'>
+				<button className='close' onClick={handleClose}>
+					&times;
+				</button>
+				<h2>Create User</h2>
 				<div className='form'>
-					<h1>Create User</h1>
 					<form onSubmit={handleSubmit}>
 						<input
 							type='text'
@@ -84,7 +88,6 @@ const CreateUser = ({ isAuth }) => {
 						<button type='submit'>Create User</button>
 					</form>
 				</div>
-				<UsersSidePanel />
 			</div>
 		</div>
 	);

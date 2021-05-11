@@ -8,6 +8,7 @@ import Login from './components/entry/Login';
 import CreateAccount from './components/entry/CreateAccount';
 import Dashboard from './components/dashboard/Dashboard';
 import ViewTasks from './components/tasks/ViewTasks';
+import ViewUsers from './components/createUser/ViewUsers';
 
 function App() {
 	const [token, setToken] = useState(localStorage.getItem('token'));
@@ -44,7 +45,7 @@ function App() {
 				)}
 			/>
 			<Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
-			<Route path='/users' render={() => <CreateUser isAuth={isAuth} />} />
+			<Route path='/users' render={() => <ViewUsers isAuth={isAuth} />} />
 			<Route path='/dashboard' render={() => <Dashboard isAuth={isAuth} />} />
 			<Route path='/tasks' render={() => <ViewTasks isAuth={isAuth} />} />
 		</div>

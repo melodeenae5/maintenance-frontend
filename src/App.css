@@ -3,9 +3,19 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	text-shadow: 0px;
+	background-color: #f7f7f7;
+}
+img {
+	padding: 0px 8px;
+}
+.title {
+	font-size: 18px;
+	padding-left: 20px;
+	padding-right: 20px;
+	color: #3b3b3b;
 }
 .navbar {
-	top: 75px;
+	top: 50px;
 	padding: 0;
 	width: 20%;
 	background-color: #1e73a6;

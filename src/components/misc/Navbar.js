@@ -24,42 +24,27 @@ const Navbar = ({ isAuth, setIsAuth }) => {
 				</li>
 				<li>
 					<NavLink
-						to='/create-user'
+						to='/tasks'
 						className='nav-link'
 						activeClassName='nav-active'>
-						Create Users
+						Tasks
+					</NavLink>
+				</li>
+
+				<li>
+					<NavLink
+						to='/chats'
+						className='nav-link'
+						activeClassName='nav-active'>
+						Chats
 					</NavLink>
 				</li>
 				<li>
 					<NavLink
-						to='/create-task'
+						to='/users'
 						className='nav-link'
 						activeClassName='nav-active'>
-						Create Tasks
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						to='/assign-task'
-						className='nav-link'
-						activeClassName='nav-active'>
-						Assign Tasks
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						to='/task-status'
-						className='nav-link'
-						activeClassName='nav-active'>
-						View Task Status
-					</NavLink>
-				</li>
-				<li>
-					<NavLink
-						to='/messages'
-						className='nav-link'
-						activeClassName='nav-active'>
-						Messaging
+						Users
 					</NavLink>
 				</li>
 				<button className='logout' onClick={logout}>

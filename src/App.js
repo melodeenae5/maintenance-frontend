@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import wash from './wash.png';
 import { Route } from 'react-router-dom';
 import CreateUser from './components/createUser/CreateUser';
 import Navbar from './components/misc/Navbar';
@@ -12,6 +13,10 @@ function App() {
 	const [isAuth, setIsAuth] = useState(token ? true : false);
 	return (
 		<div>
+			<h1 className='title'>
+				<img src={wash} alt='wash icon' height='20px' />
+				Tulsa Cleaning
+			</h1>
 			<Route
 				path='/'
 				exact

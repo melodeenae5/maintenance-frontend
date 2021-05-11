@@ -1,14 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+body {
+	font-family: 'Roboto', sans-serif;
+	text-shadow: 0px;
+}
 .navbar {
 	top: 75px;
 	padding: 0;
-	width: 17%;
-	background-color: #f1f1f1;
+	width: 20%;
+	background-color: #1e73a6;
 	height: 100%;
 	position: fixed;
 	overflow: auto;
 }
 .navcontent {
 	list-style-type: none;
+	padding-left: 20px;
+	padding-right: 20px;
 	height: 50%;
 	display: flex;
 	flex-direction: column;
@@ -16,22 +24,32 @@
 }
 
 .nav-link {
+	font-size: 14px;
 	text-decoration: none;
+	color: #90bcd4;
 }
 .nav-active {
-	color: green;
+	color: #ffffff;
+}
+.logout {
+	font-size: 14px;
+	background-color: #00aff0;
+	color: #ffffff;
+	border: none;
+	padding: 5px;
 }
 
 .content {
 	margin-top: 75px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 }
 .form {
-  display: flex;
+	display: flex;
 	flex-direction: column;
 }
 .center-content {
 }
 .side-content {
+	float: right;
 }

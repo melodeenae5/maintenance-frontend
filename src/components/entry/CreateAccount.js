@@ -1,36 +1,43 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { apiUrl } from '../config';
+import { Link, useHistory } from 'react-router-dom';
+import { apiUrl } from '../../config';
 
-const CreateUser = () => {
-	const [newUserInfo, setNewUserInfo] = useState({ admin: false });
+const CreateAccount = ({ setToken, setRefresh, setIsAuth, isAuth }) => {
+	const [newAdminInfo, setNewAdminInfo] = useState({ admin: true });
+	let history = useHistory();
 	function handleChange(event) {
 		event.preventDefault();
-		setNewUserInfo({ ...newUserInfo, [event.target.id]: event.target.value });
-		if (event.target.type === 'checkbox') {
-			if (event.target.value == 'on') {
-				setNewUserInfo({ ...newUserInfo, admin: true });
-			} else {
-				setNewUserInfo({ ...newUserInfo, admin: false });
-			}
-		}
+		setNewAdminInfo({ ...newAdminInfo, [event.target.id]: event.target.value });
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
 		axios({
 			method: 'POST',
 			url: `${apiUrl}/users/register`,
-			data: newUserInfo,
+			data: newAdminInfo,
 		})
 			.then((res) => {
 				console.log(res);
+				if (res.data.token) {
+					localStorage.setItem('token', res.data.token);
+					localStorage.setItem('userId', res.data.user_id);
+					localStorage.setItem('username', res.data.username);
+					setToken(res.data.token);
+					setIsAuth(true);
+					history.push('/dashboard');
+					setRefresh(true);
+				}
 			})
 			.catch((err) => console.log(err));
 	}
+	if (isAuth) {
+		history.push('/dashboard');
+	}
 	return (
-		<div className='content'>
+		<div>
 			<div className='form'>
-				<h1>Create User</h1>
+				<h1>Create Account</h1>
 				<form onSubmit={handleSubmit}>
 					<input
 						type='text'
@@ -48,19 +55,20 @@ const CreateUser = () => {
 						onChange={handleChange}
 					/>
 					<br />
-					<input
-						type='text'
-						required
-						id='username'
-						placeholder='Username'
-						onChange={handleChange}
-					/>
-					<br />
+
 					<input
 						type='email'
 						required
 						id='email'
 						placeholder='Email'
+						onChange={handleChange}
+					/>
+					<br />
+					<input
+						type='text'
+						required
+						id='username'
+						placeholder='Username'
 						onChange={handleChange}
 					/>
 					<br />
@@ -72,13 +80,13 @@ const CreateUser = () => {
 						onChange={handleChange}
 					/>
 					<br />
-					admin? <input type='checkbox' id='admin' onChange={handleChange} />
-					<br />
-					<button type='submit'>Create User</button>
+					<button type='submit'>Create Admin Account</button>
 				</form>
+				<br />
+				<Link to='/'>Back to Login</Link>
 			</div>
 		</div>
 	);
 };
 
-export default CreateUser;
+export default CreateAccount;

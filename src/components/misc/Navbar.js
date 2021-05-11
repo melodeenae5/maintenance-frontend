@@ -62,7 +62,9 @@ const Navbar = ({ isAuth, setIsAuth }) => {
 						Messaging
 					</NavLink>
 				</li>
-				<button onClick={logout}>Logout</button>
+				<button className='logout' onClick={logout}>
+					Sign out
+				</button>
 			</ul>
 		</div>
 	);

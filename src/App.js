@@ -1,11 +1,13 @@
 import './App.css';
 import React, { useState } from 'react';
-import wash from './wash.png';
+import wash from './assets/wash.png';
 import { Route } from 'react-router-dom';
 import CreateUser from './components/createUser/CreateUser';
 import Navbar from './components/misc/Navbar';
 import Login from './components/entry/Login';
 import CreateAccount from './components/entry/CreateAccount';
+import Dashboard from './components/dashboard/Dashboard';
+import ViewTasks from './components/tasks/ViewTasks';
 
 function App() {
 	const [token, setToken] = useState(localStorage.getItem('token'));
@@ -42,10 +44,9 @@ function App() {
 				)}
 			/>
 			<Navbar isAuth={isAuth} setIsAuth={setIsAuth} />
-			<Route
-				path='/create-user'
-				render={() => <CreateUser isAuth={isAuth} />}
-			/>
+			<Route path='/users' render={() => <CreateUser isAuth={isAuth} />} />
+			<Route path='/dashboard' render={() => <Dashboard isAuth={isAuth} />} />
+			<Route path='/tasks' render={() => <ViewTasks isAuth={isAuth} />} />
 		</div>
 	);
 }
